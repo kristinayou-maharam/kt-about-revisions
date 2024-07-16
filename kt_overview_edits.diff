@@ -1,0 +1,650 @@
+diff --git a/app/assets/stylesheets/main/company.scss b/app/assets/stylesheets/main/company.scss
+index 6d15a21f..cec08cc1 100644
+--- a/app/assets/stylesheets/main/company.scss
++++ b/app/assets/stylesheets/main/company.scss
+@@ -222,6 +222,28 @@
+     font-family: $kt_italic;
+   }
+ 
++  p a {
++    text-decoration: none;
++    color: #f99f00;
++    border-bottom: none;
++  }
++
++  p a:hover {
++    border-bottom: #f99f00 2px solid;
++  }
++
++  #scroll-to-top {
++    display: none;
++    right: 20px;
++    z-index: 0;
++    position: fixed;
++    bottom: 15px;
++  }
++
++  #backtotop:hover {
++    color: #f99f00 !important;
++  }
++
+   #section-header {
+     margin-top: 0vh;
+     margin-bottom: 20px;
+@@ -445,27 +467,27 @@
+     overflow-y: hidden;
+   }
+ 
+-  #mobile-horizontal-scroll::-webkit-scrollbar-track {
+-    background-color: #ffffff;
+-  }
+-
+-  #mobile-horizontal-scroll::-webkit-scrollbar-thumb {
+-    background: #f99f00;
+-    border-radius: 0;
+-  }
+-
+   #mobile-scroll-container {
+     display: none;
+   }
+ 
+   #mobile-horizontal-scroll img {
+-    width: 64vw;
++    width: 64%;
+     display: inline-block;
+     margin-right: 1.5vw;
+   }
+ 
+   #horizontal-img-scroll {
+-    width: 100%;
++    width: 100vw;
++    height: 65vh;
++    display: flex;
++    flex-wrap: nowrap;
++    padding-bottom: 50px;
++    margin-bottom: 100px;
++  }
++
++  #horizontal-img-scroll-two {
++    width: 100vw;
+     height: 65vh;
+     display: flex;
+     flex-wrap: nowrap;
+@@ -474,7 +496,14 @@
+   }
+ 
+   #scroll-item {
+-    width: 65%;
++    width: 30%;
++    margin-right: 20px;
++    height: auto;
++  }
++
++  #scroll-two-item {
++    width: 30%;
++    margin-right: 20px;
+     height: auto;
+   }
+ 
+@@ -483,6 +512,7 @@
+     overflow-y: hidden;
+     width: 100% !important;
+     display: block;
++    position: relative;
+   }
+ 
+   #scroll-container-two {
+@@ -490,28 +520,19 @@
+     overflow-y: hidden;
+     width: 100% !important;
+     display: block;
+-  }
+-
+-  #horizontal-img-scroll-two {
+-    width: 100%;
+-    height: 65vh;
+-    display: flex;
+-    flex-wrap: nowrap;
+     position: relative;
+-    padding-bottom: 50px;
+-    margin-bottom: 100px;
+   }
+ 
+   #horizontal-img-scroll img {
+     height: 95%;
+     display: inline-block;
+-    margin-right: 1.5vw;
++    margin-right: 20px;
+   }
+ 
+   #horizontal-img-scroll-two img {
+     height: 95%;
+     display: inline-block;
+-    margin-right: 1.5vw;
++    margin-right: 20px;
+   }
+ 
+   #full-width-carousel {
+@@ -541,21 +562,17 @@
+ 
+   .page-breaker {
+     min-height: 100vh;
+-    position: relative;
+     display: block;
+     flex-direction: column;
+     justify-content: center;
+-    margin-top: 100px;
+     z-index: 100;
+   }
+ 
+   .page-breaker-two {
+     min-height: 100vh;
+-    position: relative;
+     display: block;
+     flex-direction: column;
+     justify-content: center;
+-    margin-top: 200px;
+     z-index: 100;
+   }
+ 
+@@ -663,6 +680,11 @@
+     display: inline-block;
+     width: 80px;
+   }
++
++  .slick-arrow {
++    display: inline-block !important;
++  }
++
+   .slick-controls {
+     margin-top: 15px;
+   }
+@@ -696,6 +718,20 @@
+ 
+   a {
+     text-decoration: underline;
++    color: black !important;
++  }
++
++  .slick-arrow {
++    -webkit-tap-highlight-color: transparent !important;
++    color: black !important;
++  }
++
++  .slick-arrow:hover{
++    color: #f99f00;
++  }
++
++  .slick-arrow:focus {
++    outline: none !important;
+   }
+ 
+   @media only screen and  (max-width: 1256px) {
+@@ -811,6 +847,10 @@
+       margin-left: 4%;
+     }
+ 
++    #scroll-to-top{
++      left: 90vw !important;
++    }
++
+   }
+ 
+   @media only screen and (max-width: 992px) {
+@@ -917,10 +957,24 @@
+       margin-bottom: 0 !important;
+     }
+ 
++    #scroll-to-top{
++      margin-bottom: 0;
++      margin-left: 12vw !important;
++      margin-top: 20vh !important;
++      width: 70vw;
++      text-align: center;
++      position: static;
++      display: block;
++    }
++
+   }
+ 
+   @media only screen and (max-width: 576px) {
+ 
++    #arrows {
++      width: 18vw !important;
++    }
++
+     .fk-title {
+       margin-bottom: 20vh !important;
+     }
+@@ -1016,8 +1070,19 @@
+       display: block;
+     }
+ 
+-    #arrows {
+-      width: 20vw !important;
++    .slick-controls-two {
++      width: 25vw !important;
++      margin-left: 2% !important;
++   }
++
++    .slick-controls-three {
++      width: 25vw !important;
++      margin-left: 2% !important;
++    }
++
++    .slick-controls-four {
++      width: 30vw !important;
++      margin-left: 2% !important;
+     }
+ 
+     #caption {
+@@ -1101,6 +1166,8 @@
+     #moma-carousel {
+       height: 20vh;
+       margin-top: 5vh !important;
++      margin-bottom: 20vh !important;
++      z-index: 1000;
+     }
+ 
+     #moma-carousel img {
+diff --git a/app/views/static_pages/overview.html.erb b/app/views/static_pages/overview.html.erb
+index b33979a7..97dff2e9 100644
+--- a/app/views/static_pages/overview.html.erb
++++ b/app/views/static_pages/overview.html.erb
+@@ -41,63 +41,63 @@
+   <img id="right-half-img" class="parallaxImage reveal-image" src="<%= image_path("site/kt_overview/hans_knoll.jpg") %>">
+   <p id="caption-right">Hans Knoll established the Hans G. Knoll Furniture Company in 1938.<h6 style="margin-left: 51%;">Courtesy of Knoll Archives.</h6></p>
+ 
+-  <div id="mobile-scroll-container">
+-    <p id="seemore">Scroll to see more →</p>
+-    <div id="mobile-horizontal-scroll">
+-      <div>
++  <div id="scroll-container">
++    <div id="scroll-seemore">
++    </div>
++    <div id="horizontal-img-scroll">
++      <div id="scroll-item">
+         <img src="<%= image_path("site/kt_overview/c3_p.jpg") %>">
+-        <div>
+-          <p id="caption" style="width: 70% !important;">Florence at the Cranbrook Academy of Art, ca. 1933.<br><h6>Courtesy of Cranbrook Archives Digital Collection.</h6></p>
+-        </div>
++        <p id="caption" style="width: 70% !important;">Florence at the Cranbrook Academy of Art, ca. 1933.<br><h6>Courtesy of Cranbrook Archives Digital Collection.</h6></p>
+       </div>
+-      <div>
++      <div id="scroll-item">
+         <img src="<%= image_path("site/kt_overview/c2_p.jpg") %>">
+         <p id="caption" style="width: 70% !important;">The Cranbrook Academy of Art, ca. 1933.<br><h6>Courtesy of Cranbrook Archives Digital Collection.</h6></p>
+       </div>
+-      <div>
++      <div id="scroll-item">
+         <img src="<%= image_path("site/kt_overview/c43_p.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Knoll collaborators, Eero Saarinen and Charles Eames, at Cranbrook, ca. 1941. <br><h6>Courtesy of Cranbrook Archives Digital Collection.</h6></p>
+       </div>
+-      <div>
++      <div id="scroll-item">
+         <img src="<%= image_path("site/kt_overview/florence_cranbrook.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Florence and Hans Knoll with Nordiska Kompaniet business associates in Sweden, ca. 1946. <br><h6>Courtesy of Cranbrook Archives Digital Collection.</h6></p>
+       </div>
+-      <div>
++      <div id="scroll-item">
+         <img src="<%= image_path("site/kt_overview/florence_hans_saarinen_family.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Florence and Hans Knoll with the Saarinen Family, ca. 1949. <br> <h6>Courtesy of Cranbrook Archives Digital Collection.</h6></p>
+       </div>
+-      <div>
++      <div id="scroll-item">
+         <img id="lastimg" src="<%= image_path("site/kt_overview/crown_hall.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Florence graduated from The Illinois Institute of Technology in 1941, where she studied architecture with Mies van der Rohe.<br><h6 style="width: 50%;">Courtesy of Library of Congress, Prints & Photographs Division, Balthazar Korab Collection.</h6></p>
+       </div>
+     </div>
+   </div>
+ 
+-  <div id="scroll-container">
+-    <div id="scroll-seemore">
+-    </div>
+-    <div id="horizontal-img-scroll">
+-      <div id="scroll-item">
++  <div id="mobile-scroll-container">
++    <p id="seemore">Scroll to see more →</p>
++    <div id="mobile-horizontal-scroll">
++      <div>
+         <img src="<%= image_path("site/kt_overview/c3_p.jpg") %>">
+-        <p id="caption" style="width: 70% !important;">Florence at the Cranbrook Academy of Art, ca. 1933.<br><h6>Courtesy of Cranbrook Archives Digital Collection.</h6></p>
++        <div>
++          <p id="caption" style="width: 70% !important;">Florence at the Cranbrook Academy of Art, ca. 1933.<br><h6>Courtesy of Cranbrook Archives Digital Collection.</h6></p>
++        </div>
+       </div>
+-      <div id="scroll-item">
++      <div>
+         <img src="<%= image_path("site/kt_overview/c2_p.jpg") %>">
+         <p id="caption" style="width: 70% !important;">The Cranbrook Academy of Art, ca. 1933.<br><h6>Courtesy of Cranbrook Archives Digital Collection.</h6></p>
+       </div>
+-      <div id="scroll-item">
++      <div>
+         <img src="<%= image_path("site/kt_overview/c43_p.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Knoll collaborators, Eero Saarinen and Charles Eames, at Cranbrook, ca. 1941. <br><h6>Courtesy of Cranbrook Archives Digital Collection.</h6></p>
+       </div>
+-      <div id="scroll-item">
++      <div>
+         <img src="<%= image_path("site/kt_overview/florence_cranbrook.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Florence and Hans Knoll with Nordiska Kompaniet business associates in Sweden, ca. 1946. <br><h6>Courtesy of Cranbrook Archives Digital Collection.</h6></p>
+       </div>
+-      <div id="scroll-item">
++      <div>
+         <img src="<%= image_path("site/kt_overview/florence_hans_saarinen_family.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Florence and Hans Knoll with the Saarinen Family, ca. 1949. <br> <h6>Courtesy of Cranbrook Archives Digital Collection.</h6></p>
+       </div>
+-      <div id="scroll-item">
++      <div>
+         <img id="lastimg" src="<%= image_path("site/kt_overview/crown_hall.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Florence graduated from The Illinois Institute of Technology in 1941, where she studied architecture with Mies van der Rohe.<br><h6 style="width: 50%;">Courtesy of Library of Congress, Prints & Photographs Division, Balthazar Korab Collection.</h6></p>
+       </div>
+@@ -192,7 +192,7 @@
+       <img id="left-half-img" src="<%= image_path("site/kt_overview/Anni-Albers(Photographer Nancy Newhall).jpg") %>">
+       <div id="anni-caption" style="width: 61%; display: inline-flex;">
+         <p id="carousel-caption">Anni Albers.</p>
+-        <div id="arrows" class="slick-controls-two">
++        <div class="slick-controls-two">
+           <button class="anni-prevarrow">←</button>
+           <button class="anni-nextarrow">→</button>
+         </div>
+@@ -204,7 +204,7 @@
+       <div id="anni-caption" style= "width: 61%; display: inline-flex;">
+         <p id="carousel-caption">Eclat by Anni Albers, ca. 1976.</p>
+ 
+-        <div id="arrows" class="slick-controls-two">
++        <div class="slick-controls-two">
+           <button class="anni-prevarrow">←</button>
+           <button class="anni-nextarrow">→</button>
+         </div>
+@@ -217,7 +217,7 @@
+       <img id="right-half-img" src="<%= image_path("site/kt_overview/Sheila-Hicks-Combine.jpg") %>">
+       <div id="sheila-caption" style="width: 61%; margin-left: 53%; display: inline-flex;">
+         <p id="carousel-caption">Sheila Hicks.</p>
+-        <div id="arrows" class="slick-controls-three">
++        <div class="slick-controls-three">
+           <button class="prevarrow">←</button>
+           <button class="nextarrow">→</button>
+         </div>
+@@ -228,7 +228,7 @@
+       <img id="right-half-img" src="<%= image_path("site/kt_overview/inca.jpg") %>">
+       <div id="sheila-caption" style="width: 61%; margin-left: 53%; display: inline-flex;">
+         <p id="carousel-caption">Color card of Inca by Sheila Hicks, ca. 1966.</p>
+-        <div id="arrows" class="slick-controls-three">
++        <div class="slick-controls-three">
+           <button class="prevarrow">←</button>
+           <button class="nextarrow">→</button>
+         </div>
+@@ -241,77 +241,77 @@
+     Florence championed the practice of collaborating with—and crediting—the leading creative minds of the time, from weaver Anni Albers to graphic designer Herbert Matter.
+   </div>
+ 
+-  <div id="mobile-scroll-container">
+-    <p id="seemore">Scroll to see more →</p>
+-    <div id="mobile-horizontal-scroll">
+-      <div>
++  <div id="scroll-container-two">
++    <div id="scroll-seemore">
++    </div>
++    <div id="horizontal-img-scroll-two">
++      <div id="scroll-two-item">
+         <img src="<%= image_path("site/kt_overview/noemi_raymond.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Noémi Raymond.<br><h6 style="width: 50%;">The Architectural Archives, University of Pennsylvania, David Leavitt Collection.</h6></p>
+       </div>
+-      <div>
++      <div id="scroll-two-item">
+         <img src="<%= image_path("site/kt_overview/c119_p.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Mosaic by Noémi Raymond, ca. 1950.</p>
+       </div>
+-      <div>
++      <div id="scroll-two-item">
+         <img src="<%= image_path("site/kt_overview/ART410716.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Lazy Lines by Astrid Sampe, ca. 1953.<br><h6>Digital Image © The Museum of Modern Art/Licensed by SCALA / Art Resource, NY. </h6></p>
+       </div>
+-      <div>
++      <div id="scroll-two-item">
+         <img src="<%= image_path("site/kt_overview/K18274 2.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Striae Stripe, introduced in 2015 by Knoll Textiles, references Rugby by Astrid Sampe, ca. 1955.</p>
+       </div>
+-      <div>
++      <div id="scroll-two-item">
+         <img src="<%= image_path("site/kt_overview/haratzy.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Eszter Haraszty.<br><h6>Courtesy of Knoll Archives.</h6></p>
+       </div>
+-      <div>
++      <div id="scroll-two-item">
+         <img src="<%= image_path("site/kt_overview/ART411007.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Triad by Eszter Haraszty, ca. 1954. <br><h6>Digital Image © The Museum of Modern Art/Licensed by SCALA / Art Resource, NY. </h6></p>
+       </div>
+-      <div>
++      <div id="scroll-two-item">
+         <img src="<%= image_path("site/kt_overview/suzanne_huguenin.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Suzanne Huguenin.<br><h6>Courtesy of Knoll Archives.</h6></p>
+       </div>
+-      <div>
++      <div id="scroll-two-item">
+         <img src="<%= image_path("site/kt_overview/nylon_homespun_2.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Nylon Homespun by Suzanne Huguenin, ca. 1958.</p>
+       </div>
+     </div>
+   </div>
+ 
+-  <div id="scroll-container-two">
+-    <div id="scroll-seemore">
+-    </div>
+-    <div id="horizontal-img-scroll-two">
+-      <div id="scroll-item">
++  <div id="mobile-scroll-container">
++    <p id="seemore">Scroll to see more →</p>
++    <div id="mobile-horizontal-scroll">
++      <div>
+         <img src="<%= image_path("site/kt_overview/noemi_raymond.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Noémi Raymond.<br><h6 style="width: 50%;">The Architectural Archives, University of Pennsylvania, David Leavitt Collection.</h6></p>
+       </div>
+-      <div id="scroll-item">
++      <div>
+         <img src="<%= image_path("site/kt_overview/c119_p.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Mosaic by Noémi Raymond, ca. 1950.</p>
+       </div>
+-      <div id="scroll-item">
++      <div>
+         <img src="<%= image_path("site/kt_overview/ART410716.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Lazy Lines by Astrid Sampe, ca. 1953.<br><h6>Digital Image © The Museum of Modern Art/Licensed by SCALA / Art Resource, NY. </h6></p>
+       </div>
+-      <div id="scroll-item">
++      <div>
+         <img src="<%= image_path("site/kt_overview/K18274 2.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Striae Stripe, introduced in 2015 by Knoll Textiles, references Rugby by Astrid Sampe, ca. 1955.</p>
+       </div>
+-      <div id="scroll-item">
++      <div>
+         <img src="<%= image_path("site/kt_overview/haratzy.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Eszter Haraszty.<br><h6>Courtesy of Knoll Archives.</h6></p>
+       </div>
+-      <div id="scroll-item">
++      <div>
+         <img src="<%= image_path("site/kt_overview/ART411007.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Triad by Eszter Haraszty, ca. 1954. <br><h6>Digital Image © The Museum of Modern Art/Licensed by SCALA / Art Resource, NY. </h6></p>
+       </div>
+-      <div id="scroll-item">
++      <div>
+         <img src="<%= image_path("site/kt_overview/suzanne_huguenin.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Suzanne Huguenin.<br><h6>Courtesy of Knoll Archives.</h6></p>
+       </div>
+-      <div id="scroll-item">
++      <div>
+         <img src="<%= image_path("site/kt_overview/nylon_homespun_2.jpg") %>">
+         <p id="caption" style="width: 70% !important;">Nylon Homespun by Suzanne Huguenin, ca. 1958.</p>
+       </div>
+@@ -323,7 +323,7 @@
+       <img id="medium-img-left" class="parallaxImage reveal-image" src="<%= image_path("site/kt_overview/ART410228.jpg") %>">
+       <div id="moma-caption" style= "width: 87%; display: inline-flex;">
+         <p id="carousel-caption">Installation view of the exhibition Textiles U.S.A., 1956. The Museum of Modern Art, New York.</p>
+-        <div id="arrows" class="slick-controls-two">
++        <div class="slick-controls-two">
+           <button class="prevarrow">←</button>
+           <button class="nextarrow">→</button>
+         </div>
+@@ -334,7 +334,7 @@
+       <img id="medium-img-left" class="parallaxImage reveal-image" src="<%= image_path("site/kt_overview/ART595311.jpg") %>">
+       <div id="moma-caption" style= "width: 87%; display: inline-flex;">
+         <p id="carousel-caption">Installation view of the exhibition Textiles U.S.A., 1956. The Museum of Modern Art, New York.</p>
+-        <div id="arrows" class="slick-controls-two">
++        <div class="slick-controls-two">
+           <button class="prevarrow">←</button>
+           <button class="nextarrow">→</button>
+         </div>
+@@ -345,7 +345,7 @@
+       <img id="medium-img-left" class="parallaxImage reveal-image" src="<%= image_path("site/kt_overview/ART410230.jpg") %>">
+       <div id="moma-caption" style= "width: 87%; display: inline-flex;">
+         <p id="carousel-caption">Installation view of the exhibition Textiles U.S.A., 1956. The Museum of Modern Art, New York.</p>
+-        <div id="arrows" class="slick-controls-two">
++        <div class="slick-controls-two">
+           <button class="prevarrow">←</button>
+           <button class="nextarrow">→</button>
+         </div>
+@@ -436,20 +436,20 @@
+ 
+   <div id="overlap-img" class="cato-carousel" style="margin-top: -70px;z-index: 100;">
+     <div>
+-      <img id="left-half-img" src="<%= image_path("site/kt_overview/catoblanket_A3467.jpg") %>">
++      <img id="left-half-img" src="<%= image_path("site/kt_overview/catoblanket_A3467.jpg") %>" style="width: 48%">
+       <div id="anni-caption" style="width: 62%; display: inline-flex;">
+         <p id="carousel-caption">Color blanket of Cato by Paul Maute.</p>
+-        <div id="arrows" class="slick-controls-two">
++        <div class="slick-controls-two">
+           <button class="anni-prevarrow">←</button>
+           <button class="anni-nextarrow">→</button>
+         </div>
+       </div>
+     </div>
+     <div>
+-      <img id="left-half-img" src="<%= image_path("site/kt_overview/b229_p.jpg") %>">
++      <img id="left-half-img" src="<%= image_path("site/kt_overview/b229_p.jpg") %>" style="width: 48%">
+       <div id="anni-caption" style= "width: 62%; display: inline-flex;">
+         <p id="carousel-caption">Color card and samples of Cato by Paul Maute, 1961. </p>
+-        <div id="arrows" class="slick-controls-two">
++        <div class="slick-controls-two">
+           <button class="anni-prevarrow">←</button>
+           <button class="anni-nextarrow">→</button>
+         </div>
+@@ -477,6 +477,10 @@
+     “True colors, interesting textures, and serviceability are three qualities which have distinguished the Knoll Textiles collection from the beginning.” <br><br>– Florence Knoll
+   </div>
+ 
++  <div id="scroll-to-top">
++    <p id="backtotop" onclick="topFunction()"><strong>Back to Top ↑</strong></p>
++  </div>
++
+ </div>
+ 
+ <% content_for :head do %>
+@@ -486,8 +490,8 @@
+   <script src="https://unpkg.com/scrollreveal"></script>
+   <script src="https://cdn.jsdelivr.net/jquery.slick/1.5.7/slick.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js"></script>
+-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
++  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
++  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
+ <% end %>
+@@ -495,28 +499,32 @@
+ <% content_for :javascript do %>
+ <script type="text/javascript">
+ 
++document.addEventListener("DOMContentLoaded", (event) => {
++
+   gsap.registerPlugin(ScrollTrigger);
+ 
+   ScrollTrigger.create({
+     trigger: "#scroll-container",
+     start: "top top",
+-    end: "+=2300", // Adjust based on the length of the scrollable content
+-    pin: true
++    end: "+=1800", // Adjust based on the length of the scrollable content
++    pin: true,
++    anticipatePin: 1
+   });
+ 
+   let scrollContainer = document.getElementById("scroll-container");
+ 
+   gsap.to("#horizontal-img-scroll", {
+-    xPercent: -480,
+-    x: () => "52vw",
++    xPercent: -250,
++    x: () => "42vw",
+     ease: "none",
+     scrollTrigger: {
+       trigger: "#horizontal-img-scroll",
+       start: "center center",
+-      end: "+=2300",
++      end: "+=1800",
+       scrub: true,
+       pin: false,
+-      invalidateOnRefresh: true
++      invalidateOnRefresh: true,
++      anticipatePin: 1
+     }
+   });
+ 
+@@ -524,13 +532,14 @@
+     trigger: "#scroll-container-two",
+     start: "top top",
+     end: "+=2400", // Adjust based on the length of the scrollable content
+-    pin: true
++    pin: true,
++    anticipatePin: 1
+   });
+ 
+ 
+   gsap.to("#horizontal-img-scroll-two", {
+-    xPercent: -550,
+-    x: () => "52vw",
++    xPercent: -320,
++    x: () => "42vw",
+     ease: "none",
+     scrollTrigger: {
+       trigger: "#horizontal-img-scroll-two",
+@@ -538,10 +547,12 @@
+       end: "+=2400",
+       scrub: true,
+       pin: false,
+-      invalidateOnRefresh: true
++      invalidateOnRefresh: true,
++      anticipatePin: 1
+     }
+   });
+ 
++});
+ 
+   ScrollReveal().reveal('#reveal-callout', {
+     duration: 2000
+@@ -618,7 +629,6 @@
+     cssEase: 'linear'
+   });
+ 
+-
+   $('.slick-carousel').slick({
+     infinite: true,
+     slidesToShow: 1, // Shows a three slides at a time
+@@ -632,5 +642,19 @@
+     cssEase: 'linear'
+   });
+ 
++  window.addEventListener('scroll', function() {
++    if(window.scrollY> 10000){
++      $('#scroll-to-top').css('display', 'block');
++    }
++    else{
++      $('#scroll-to-top').css('display', 'none');
++    };
++  });
++
++  function topFunction() {
++    document.body.scrollTop = 0;
++    document.documentElement.scrollTop = 0;
++  };
++
+ </script>
+ <% end %>
